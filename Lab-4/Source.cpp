@@ -6,13 +6,14 @@
 using namespace std;
 void tempread();
 
-string inputFileName;
+string inputFileName = "C:/Users/quinn/source/repos/Lab - 4";
 ifstream infile; //File identifier
 
 
 int main()
 {
 	infile.open("tempurature.dat");
+	void tempread();
 	infile.close();
 
 	return 0;
@@ -20,11 +21,12 @@ int main()
 
 void tempread()
 {
-	int temp = '2';
+	int temp;
+	infile.get(temp);
 	int mintemp = '-35';
 	int maxtemp = '120';
-	int num;
-	while (num != '\0')
+	while (temp != '\0')
+
 		if (temp < mintemp)
 		{
 			mintemp = temp;
@@ -33,6 +35,9 @@ void tempread()
 		{
 			maxtemp = temp;
 		}
+		cout << mintemp << "|";
+		
+		
 
 
 
