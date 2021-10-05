@@ -9,14 +9,22 @@
 using namespace std;
 void tempread();
 
+string fileName= "C:/Users/quinn/source/repos/Lab-4";
 ifstream inFile;
+char intemp;
 
-inFile.open("C:/Users/quinn/source/repos/Lab - 4");
 
 
 int main()
 {
+	inFile.open("inTempurature.dat");
+	if (!inFile)
+	{
+		cout << "Input file failed to open.";
+		return 1;
 
+	}
+	inFile.get(intemp);
 	tempread();
 	inFile.close();
 
@@ -25,14 +33,6 @@ int main()
 
 void tempread()
 {
-
-	if (!inFile)
-	{
-		cout << "Input file failed to open.";
-		return;
-
-	}
-	float intemp;
 	int mintemp = '-35';
 	int maxtemp = '120';
 	cout << "Tempurature for 24 hours:\n";
