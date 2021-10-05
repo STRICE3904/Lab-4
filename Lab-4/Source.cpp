@@ -8,8 +8,10 @@
 
 using namespace std;
 void tempread();
-string inputFileName = "C:/Users/quinn/source/repos/Lab - 4";
+
 ifstream inFile;
+
+inFile.open("C:/Users/quinn/source/repos/Lab - 4");
 
 
 int main()
@@ -23,7 +25,6 @@ int main()
 
 void tempread()
 {
-	inFile.open("tempurature.dat");
 
 	if (!inFile)
 	{
@@ -37,43 +38,42 @@ void tempread()
 	cout << "Tempurature for 24 hours:\n";
 	cout << "   -30        0        30        60        90       120";
 	string star;
-	star = "";
-	while (inFile >> intemp)
+	star = " * ";
+	string space;
+	space = " ";
+	for (int i = 1; i <= (abs(intemp) / 3.0); ++i) //abs() is used to calculate values for negative inputs.
 	{
-		star.append("*");
-
-		if (intemp <= -35) {
-			intemp == mintemp;
-			cout << mintemp << setw(12) << star + "|";
-		}
-		else if (intemp > -30 && intemp <= -10)
-		{
-			cout << intemp << setw(12) << star + "|";
-		}
-		else if (intemp > -10 && intemp < 0)
-		{
-			cout << intemp << setw(13) << star + "|";
-		}
-		else if (intemp >= 0 && intemp < 10)
-		{
-			cout << intemp << setw(14) << "|" << star;
-		}
-		else if (intemp >= 10 && intemp < 100)
-		{
-			cout << intemp << setw(13) << "|" << star;
-		}
-		else if (intemp >= 100 && intemp <= 120)
-		{
-			cout << intemp << setw(12) << "|" << star;
-		}
-		else if (intemp >= 120)
-		{
-			intemp == maxtemp;
-			cout << maxtemp << setw(12) << "|" << star;
-		}
-		cout << endl;
-		getchar(); 
+		star.append("*"); //Appends a star to a string called star every time the loop iterates.
 	}
+
+	while (intemp)
+		if (intemp == -30) 
+		{
+			cout << setw(12) << star + "|";
+		}
+		else if (intemp > -30 && intemp <= -10) 
+		{
+			cout << setw(12) << star + "|";
+		}
+		else if (intemp > -10 && intemp < 0) 
+		{
+			cout << setw(13) << star + "|";
+		}
+		else if (intemp >= 0 && intemp < 10) 
+		{
+			cout << setw(14) << "|" << star;
+		}
+		else if (intemp >= 10 && intemp < 100) 
+		{
+			cout << setw(13) << "|" << star;
+		}
+		else if (intemp >= 100 && intemp <= 120) 
+		{
+			cout << setw(12) << "|" << star;
+		}
+			cout << endl;
+		getchar(); 
+	
 	cout << "_______________\n";
 	cout << "* = 3 degrees";
 	cout << "\n_______________";
