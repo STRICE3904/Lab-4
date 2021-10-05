@@ -7,7 +7,7 @@
 
 
 using namespace std;
-void tempread(ifstream& inFile, string inputFileName);
+void tempread();
 string inputFileName = "C:/Users/quinn/source/repos/Lab - 4";
 ifstream inFile;
 
@@ -15,24 +15,30 @@ ifstream inFile;
 int main()
 {
 
-	tempread(inFile, inputFileName);
+	tempread();
 	inFile.close();
 
 	return 0;
 }
 
-void tempread(ifstream& inFile, string inputFileName)
+void tempread()
 {
 	inFile.open("tempurature.dat");
-	char intemp;
-	inFile.get(intemp);
+
+	if (!inFile)
+	{
+		cout << "Input file failed to open.";
+		return;
+
+	}
+	float intemp;
 	int mintemp = '-35';
 	int maxtemp = '120';
 	cout << "Tempurature for 24 hours:\n";
 	cout << "   -30        0        30        60        90       120";
 	string star;
 	star = "";
-	while (intemp != 'n')
+	while (inFile >> intemp)
 	{
 		star.append("*");
 
@@ -65,11 +71,10 @@ void tempread(ifstream& inFile, string inputFileName)
 			intemp == maxtemp;
 			cout << maxtemp << setw(12) << "|" << star;
 		}
-
 		cout << endl;
-		inFile.get(intemp);
+		getchar(); 
 	}
-	cout << "###############\n";
+	cout << "_______________\n";
 	cout << "* = 3 degrees";
-	cout << "\n###############";
+	cout << "\n_______________";
 }
