@@ -7,74 +7,111 @@
 
 
 using namespace std;
-void tempread();
+int tempread();
 
-string fileName= "C:/Users/quinn/source/repos/Lab-4";
-ifstream inFile;
+
 char intemp;
-
+string inputFileName;
+ifstream infile;
 
 
 int main()
 {
-	inFile.open("inTempurature.dat");
-	if (!inFile)
+	
+	infile.open("inTempurature.dat");
+	if (!infile)
 	{
-		cout << "Input file failed to open.";
+		char yesno;
+		cout << "File not found would you like to make one Y or N; ";
+		cin >> yesno;
+		if (yesno == 'N' || yesno == 'n')
+		{
+			cerr << "failed to open " << '\n';
+		}
+		else if (yesno == 'Y' || yesno == 'y')
+		{
+			string filename = "inTempurature.dat";
+			ofstream outfile;
+			outfile.open("inTempurature.dat");
+			cout << "File has been opened, Restart the program to accsess";
+		}
 		return 1;
-
 	}
-	inFile.get(intemp);
 	tempread();
-	inFile.close();
+	infile.close();
 
 	return 0;
 }
 
-void tempread()
+int tempread()
 {
+	infile.get(intemp);
 	int mintemp = '-35';
 	int maxtemp = '120';
 	cout << "Tempurature for 24 hours:\n";
-	cout << "   -30        0        30        60        90       120";
+	cout << "   -30        0        30        60        90       120" << endl;
 	string star;
 	star = " * ";
 	string space;
 	space = " ";
-	for (int i = 1; i <= (abs(intemp) / 3.0); ++i) //abs() is used to calculate values for negative inputs.
-	{
-		star.append("*"); //Appends a star to a string called star every time the loop iterates.
-	}
+	int i;
 
 	while (intemp)
-		if (intemp == -30) 
+	{
+		if (intemp == -35 && intemp <= -30)
 		{
-			cout << setw(12) << star + "|";
+			cout << intemp;
+			for (i = -35; i = -30; i - 1)
+			{
+				if (i < intemp)
+				{
+					cout << " ";
+				}
+				else if (i >= intemp)
+				{
+					cout << star;
+				}
+			}
 		}
-		else if (intemp > -30 && intemp <= -10) 
+		else if (intemp > -30 && intemp <= -1)
 		{
-			cout << setw(12) << star + "|";
+			cout << intemp;
+			for (i = -30; i = -1; i - 1)
+			{
+				if (i < intemp)
+				{
+					cout << " ";
+				}
+				else if (i >= intemp)
+				{
+					cout << star;
+				}
+				cout << endl;
+			}
 		}
-		else if (intemp > -10 && intemp < 0) 
+		else if (intemp == 0)
 		{
-			cout << setw(13) << star + "|";
+			cout << 0 << setw(12) << "|";
 		}
-		else if (intemp >= 0 && intemp < 10) 
+		else if (intemp > 0 && intemp <= 120)
 		{
-			cout << setw(14) << "|" << star;
+			for (int i = 0; i != intemp; ++i)
+			{
+				cout << setw(12) << " ";
+				cout << "|";
+				for (int j = 0; j != intemp; ++j)
+				{
+					cout << star;
+				}
+				cout << endl;
+			}
 		}
-		else if (intemp >= 10 && intemp < 100) 
+		else if (intemp > 120)
 		{
-			cout << setw(13) << "|" << star;
+			cout << intemp << setw(12) << "|" << setw(12) << star << endl;
 		}
-		else if (intemp >= 100 && intemp <= 120) 
-		{
-			cout << setw(12) << "|" << star;
-		}
-			cout << endl;
-		getchar(); 
-	
-	cout << "_______________\n";
-	cout << "* = 3 degrees";
-	cout << "\n_______________";
+		cout << endl;
+		infile >> intemp;
+	}
+	return EXIT_SUCCESS;
 }
