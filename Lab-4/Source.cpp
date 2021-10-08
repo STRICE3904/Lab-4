@@ -45,7 +45,7 @@ int main()
 
 int tempread()
 {
-	infile.get(intemp);
+	infile >> intemp;
 	int mintemp = '-35';
 	int maxtemp = '120';
 	cout << "Tempurature for 24 hours:\n";
@@ -61,7 +61,7 @@ int tempread()
 		if (intemp == -35 && intemp <= -30)
 		{
 			cout << intemp;
-			for (i = -35; i = -30; i - 1)
+			for (i = -35; i == -30; i + 1)
 			{
 				if (i < intemp)
 				{
@@ -76,7 +76,7 @@ int tempread()
 		else if (intemp > -30 && intemp <= -1)
 		{
 			cout << intemp;
-			for (i = -30; i = -1; i - 1)
+			for (i = -30; i == -1; i + 1)
 			{
 				if (i < intemp)
 				{
@@ -95,11 +95,13 @@ int tempread()
 		}
 		else if (intemp > 0 && intemp <= 120)
 		{
-			for (int i = 0; i != intemp; ++i)
+			for (i = 1; i ==120 ; i + 1)
 			{
-				cout << setw(12) << " ";
-				cout << "|";
-				for (int j = 0; j != intemp; ++j)
+				if (i < intemp)
+				{
+					cout << " ";
+				}
+				else if (i >= intemp)
 				{
 					cout << star;
 				}
